@@ -31,7 +31,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     login_url = 'login/'
     redirect_field_name = 'blog/post_detail.html'
     form_class = forms.PostForm
-    model = forms.Post
+    model = models.Post
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     login_url = 'login/'
