@@ -1,0 +1,120 @@
+.tech-font {
+    font-family: 'Bitter', sans-serif;
+    font-size: 1.5em;
+}
+
+.center-stage {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-date {
+    text-align: center;
+}
+
+.post-title {
+    font-family: "Bitter", sans-serif;
+    font-size: 3em;
+    text-align: center;
+}
+
+.post-content {
+    font-family: 'Montserrat';
+    font-size: 1.5em;
+}
+
+.btn-comment {
+    position: absolute;
+    right: 0px;
+}
+
+.bg {
+    animation: bg_animate 10s ease-in-out alternate infinite;
+    -webkit-animation: bg_animate 10s ease-in-out alternate infinite;
+    -moz-animation: bg_animate 10s ease-in-out alternate infinite;
+    -o-animation: bg_animate 10s ease-in-out alternate infinite;
+}
+
+@keyframes bg_animate {
+    0% {
+        color: #fff;
+    }
+    20% {
+        color: #b0ffc3;
+    }
+    40% {
+        color: #fffcb0;
+    }
+    60% {
+        color: #ffa3a3;
+    }
+    80% {
+        color: #a3ddff;
+    }
+    100% {
+        color: #4b4b4b;
+    }
+}
+
+@-webkit-keyframes bg_animate {
+    0% {
+        color: #fff;
+    }
+    20% {
+        color: #b0ffc3;
+    }
+    40% {
+        color: #fffcb0;
+    }
+    60% {
+        color: #ffa3a3;
+    }
+    80% {
+        color: #a3ddff;
+    }
+    100% {
+        color: #4b4b4b;
+    }
+}
+
+@-moz-keyframes bg_animate {
+    0% {
+        color: #fff;
+    }
+    20% {
+        color: #b0ffc3;
+    }
+    40% {
+        color: #fffcb0;
+    }
+    60% {
+        color: #ffa3a3;
+    }
+    80% {
+        color: #a3ddff;
+    }
+    100% {
+        color: #4b4b4b;
+    }
+}
+
+@-o-keyframes bg_animate {
+    0% {
+        color: #fff;
+    }
+    20% {
+        color: #b0ffc3;
+    }
+    40% {
+        color: #fffcb0;
+    }
+    60% {
+        color: #ffa3a3;
+    }
+    80% {
+        color: #a3ddff;
+    }
+    100% {
+        color: #4b4b4b;
+    }
+}
