@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blog</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+        <!-- Medium Style Editor -->
+        <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static '.css/blog.css' %}">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet"> 
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav tech-font">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:post_list' %} ">Tech Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:about' %} ">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.github.com/sonicaks/">Github</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto tech-font">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_new' %} ">New Post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_draft_list' %} ">Drafts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:logout' %} ">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Welcome: {{ user.username }}</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'blog:login' %} "><span class="glyphicon glyphicon-user"></span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-posts">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
