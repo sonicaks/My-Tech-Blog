@@ -16,7 +16,7 @@ class PostListView(ListView):
 
     # Field lookups
     def get_queryset(self):
-        return models.Post.objects.filter(published_date__lte = timezone.now().order_by('-published_date'))
+        return models.Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
 
 class PostDetailView(DetailView):
     model = models.Post
@@ -41,6 +41,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 class DraftListView(LoginRequiredMixin, ListView):
     login_url = 'login/'
     redirect_field_name = 'blog/post_list.html'
+    template_name = 'blog/post_draft_list.html'
     model = models.Post
 
     def get_queryset(self):
@@ -51,6 +52,8 @@ class DraftListView(LoginRequiredMixin, ListView):
 @login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(models.Post, pk = pk)
+    form = forms.CommentForm()
+    
     if request.method == 'POST':
         form = forms.CommentForm(request.POST)
         if form.is_valid():
@@ -58,19 +61,18 @@ def add_comment_to_post(request, pk):
             comment.post = post
             comment.save()
             return redirect('blog:post_detail', pk = post.pk)
-        else:
-            form = forms.CommentForm()
-        return render(request, 'blog/comment_form.html', {'form' : form})
+    
+    return render(request, 'blog/comment_form.html', {'form' : form})
 
 @login_required
 def comment_approve(request, pk):
     comment = get_object_or_404(models.Comment, pk = pk)
     comment.approve()
-    return redirect('blog:post_detail', pk = comment.pk)
+    return redirect('blog:post_detail', pk = comment.post.pk)
 
 @login_required
 def comment_remove(request, pk):
-    comment = get_object_or_404(models.Comment, pk)
+    comment = get_object_or_404(models.Comment, pk = pk)
     post_pk = comment.post.pk
     comment.delete()
     return redirect('blog:post_detail', pk = post_pk)
